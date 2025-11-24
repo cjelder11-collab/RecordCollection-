@@ -44,7 +44,7 @@ HTML = """
 
 def get_records():
     db_path = os.path.join(os.path.dirname(__file__), "vinyl_collection.db")
-    conn = sqlite3.connect(db_path)
+    conn = sqlite3.connect("vinyl_collection.db")
     c = conn.cursor()
     c.execute("SELECT id, artist, album, year, label FROM records")
     rows = c.fetchall()
