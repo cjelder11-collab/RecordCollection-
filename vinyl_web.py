@@ -1,5 +1,6 @@
 from flask import Flask, render_template_string
 import sqlite3
+import os
 
 app = Flask(__name__)
 
@@ -42,7 +43,8 @@ HTML = """
 """
 
 def get_records():
-    conn = sqlite3.connect("/Users/chadelder/Documents/Python/Vinyl/vinyl_collection.db")
+    db_path = os.path.join(os.path.dirname(__file__), "vinyl_collection.db")
+    conn = sqlite3.connect(db_path)
     c = conn.cursor()
     c.execute("SELECT id, artist, album, year, label FROM records")
     rows = c.fetchall()

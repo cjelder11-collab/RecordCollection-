@@ -1,7 +1,7 @@
 import sqlite3
 
 # Connect to the same database your voice script uses
-conn = sqlite3.connect("/Users/chadelder/Documents/Python/Vinyl/vinyl_collection.db")  # absolute path recommended
+conn = sqlite3.connect("/Users/chadelder/Documents/Python/RecordCollection/Vinyl/vinyl_collection.db")  # absolute path recommended
 c = conn.cursor()
 
 # Fetch all records
