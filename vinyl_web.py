@@ -46,15 +46,24 @@ def get_records():
     db_path = os.path.join(os.path.dirname(__file__), "vinyl_collection.db")
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
-    c.execute("SELECT id, artist, album, year, label FROM records")
+
+    # Alphabetize by artist
+    c.execute("""
+        SELECT id, artist, album, year, label
+        FROM records
+        ORDER BY LOWER(artist) ASC
+    """)
+
     rows = c.fetchall()
     conn.close()
     return rows
+
 
 @app.route("/")
 def home():
     rows = get_records()
     return render_template_string(HTML, rows=rows)
+
 
 if __name__ == "__main__":
     # 0.0.0.0 makes it available to your phone
